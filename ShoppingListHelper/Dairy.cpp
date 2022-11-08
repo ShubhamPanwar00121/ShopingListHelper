@@ -1,11 +1,11 @@
 #include "Dairy.h"
 
-Dairy::Dairy(std::string shopName, std::string address, int shopRating, int numberOfCowsOwned, Commodity milk, Commodity cheese, Commodity curd)
+Dairy::Dairy(std::string shopName, std::string address, int shopRating, int numberOfCowsOwned, Commodity com1, Commodity com2, Commodity com3)
 	:Shop("Dairy", shopName, address, shopRating), cowsOwned{ numberOfCowsOwned }
 {
-	this->milk = milk;
-	this->cheese = cheese;
-	this->curd = curd;
+	this->com1 = com1;
+	this->com3 = com2;
+	this->com2 = com3;
 }
 
 Dairy::Dairy()
@@ -16,19 +16,19 @@ Commodity Dairy::BuyFromDairy(int CommodityType)
 {
 	switch (CommodityType)
 	{
-	case MILK:
+	case COM1:
 	{
-		return milk;
+		return com1;
 		break;
 	}
-	case CURD:
+	case COM2:
 	{
-		return curd;
+		return com2;
 		break;
 	}
-	case CHEESE:
+	case COM3:
 	{
-		return cheese;
+		return com3;
 		break;
 	}
 

@@ -1,11 +1,11 @@
 #include "MedicalStore.h"
 
-MedicalStore::MedicalStore(std::string shopName, std::string address, int shopRating, int staffRating, Commodity combiflame, Commodity perasitamol, Commodity noflue)
+MedicalStore::MedicalStore(std::string shopName, std::string address, int shopRating, int staffRating, Commodity com1, Commodity com2, Commodity com3)
 	:Shop("Dairy", shopName, address, shopRating), staffRating{ staffRating }
 {
-	this->combiflame = combiflame;
-	this->perasitamol = perasitamol;
-	this->noflue = noflue;
+	this->com2 = com1;
+	this->com1 = com2;
+	this->com3 = com3;
 }
 
 MedicalStore::MedicalStore()
@@ -20,19 +20,19 @@ Commodity MedicalStore::BuyFromMedicalStore(int CommodityType)
 {
 	switch (CommodityType)
 	{
-	case COMBIFLAME:
+	case COM2:
 	{
-		return combiflame;
+		return com2;
 		break;
 	}
-	case PERASITAMOL:
+	case COM1:
 	{
-		return perasitamol;
+		return com1;
 		break;
 	}
-	case NOFLUE:
+	case COM3:
 	{
-		return noflue;
+		return com3;
 		break;
 	}
 

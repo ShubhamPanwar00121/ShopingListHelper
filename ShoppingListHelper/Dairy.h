@@ -12,14 +12,14 @@ public:
 	int GetNumberOfCowsOwned();
 	enum CommodityTypeEnum
 	{
-		MILK,
-		CURD,
-		CHEESE
+		COM1,
+		COM2,
+		COM3
 	};
 
 private:
-	Commodity milk;
-	Commodity curd;
-	Commodity cheese;
+	Commodity com1;
+	Commodity com2;
+	Commodity com3;
 	int cowsOwned{ 0 };
 };

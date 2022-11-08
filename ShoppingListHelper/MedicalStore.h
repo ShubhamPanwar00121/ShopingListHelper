@@ -11,14 +11,14 @@ public:
 	int getStaffRating();
 	enum CommodityTypeEnum
 	{
-		PERASITAMOL,
-		COMBIFLAME,
-		NOFLUE
+		COM1,
+		COM2,
+		COM3
 	};
 private:
-	Commodity perasitamol;
-	Commodity combiflame;
-	Commodity noflue;
+	Commodity com1;
+	Commodity com2;
+	Commodity com3;
 	int staffRating{ 0 };
 };
 
