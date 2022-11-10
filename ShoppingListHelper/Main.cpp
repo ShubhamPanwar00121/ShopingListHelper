@@ -16,12 +16,12 @@ int main()
 
 void StartFunc()
 {
+	category = "";
+	shopSelectionCode = 0;
+
 	cout << "What are you Shopping today? or enter exit to exit\nDairy | Groceries | Medicines" << endl;
 	cout << "-----------------------------------------------------------\n";
-	cout << "category is " << category << endl;
 	cin >> category;
-	cout << "-----------------------------------------------------------\n";
-	cout << "category is " << category << endl;
 	ToLowerCase(category);
 	SwitchToRequiredCategory(category);
 	system("cls");
@@ -58,12 +58,12 @@ void SwitchToRequiredCategory(string str)
 	}
 	else if (str == "exit")
 	{
-
 		system("cls");
 		cout << "Checking for purchased items and making a text file" << endl;
 		MakeTextFileAndExit();
 		cout << "Exiting....";
-
+		cout << "-----------------------------------------------------------------------------------";
+		exit(0);
 	}
 	else
 	{
@@ -300,7 +300,8 @@ void PrintShopsDetails(int SrNum, string name, string address, int rating, int n
 
 int GetSelectShopNumber()
 {
-	int selectedShop;
+	int selectedShop{0};
+
 	cin >> selectedShop;
 
 	if (selectedShop > 0 && selectedShop < 4)
@@ -324,6 +325,7 @@ void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM2));
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM3));
 		cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
+		cin.clear();
 		cin.ignore();
 		getline(cin, commoditySelected);
 		ToLowerCase(commoditySelected);
