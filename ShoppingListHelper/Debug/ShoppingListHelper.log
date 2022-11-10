@@ -2,5 +2,4 @@
 C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(153,22): warning C4154: deletion of an array expression; conversion to pointer supplied
 C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(226,28): warning C4154: deletion of an array expression; conversion to pointer supplied
 C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(287,27): warning C4154: deletion of an array expression; conversion to pointer supplied
-C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(316): warning C4715: 'GetSelectShopNumber': not all control paths return a value
   ShoppingListHelper.vcxproj -> C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Debug\ShoppingListHelper.exe

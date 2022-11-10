@@ -41,7 +41,7 @@ void SwitchToRequiredCategory(string str)
 	if (str == "dairy")
 	{
 		system("cls");
-		selectedDairy = DairySelected();
+		if(selectedDairy.GetShopName()=="") selectedDairy = DairySelected();
 		shopSelectionCode = 1;
 	}
 	else if (str == "groceries")
@@ -310,12 +310,14 @@ int GetSelectShopNumber()
 	}
 	else
 	{
+		cin.clear();
+		cin.ignore(100, '\n');
 		cout << "please input a valid number (1,2 or 3)\n";
 		return GetSelectShopNumber();
 	}
 }
 
-void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
+void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop, bool recalled)
 {
 	string commoditySelected{ "" };
 	
@@ -325,8 +327,7 @@ void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM2));
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM3));
 		cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
-		cin.clear();
-		cin.ignore();
+		if (!recalled)cin.ignore();
 		getline(cin, commoditySelected);
 		ToLowerCase(commoditySelected);
 		system("cls");
@@ -358,11 +359,11 @@ void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
 		else
 		{
 			cout << "Please enter complete name and try again" << endl;
-			ShowAvaialbleCommoditiesInSelectedShop(selectedDairy);
+			ShowAvaialbleCommoditiesInSelectedShop(selectedDairy,true);
 		}
 }
 
-void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore)
+void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore, bool recalled)
 {
 	string commoditySelected{ "" };
 	
@@ -372,7 +373,7 @@ void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore)
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM3));
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM2));
 	cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
-	cin.ignore();
+	if (!recalled)cin.ignore();
 	getline(cin, commoditySelected);
 	ToLowerCase(commoditySelected);
 	system("cls");
@@ -404,11 +405,11 @@ void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore)
 	else
 	{
 		cout << "Please enter complete name and try again" << endl;
-		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore);
+		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore, true);
 	}
 }
 
-void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore)
+void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore, bool recalled)
 {
 	string commoditySelected{ "" };
 
@@ -418,7 +419,7 @@ void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore)
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM3));
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM2));
 	cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
-	cin.ignore();
+	if (!recalled)cin.ignore();
 	getline(cin, commoditySelected);
 	ToLowerCase(commoditySelected);
 	system("cls");
@@ -450,7 +451,7 @@ void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore)
 	else
 	{
 		cout << "Please enter complete name and try again" << endl;
-		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore);
+		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore, true);
 	}
 
 }
@@ -530,6 +531,6 @@ void MakeTextFileAndExit()
 	}
 	else
 	{
-		cout << "purchased items found" << endl;
+		cout << "purchased items found\nmaking list----------------" << endl;
 	}
 }
