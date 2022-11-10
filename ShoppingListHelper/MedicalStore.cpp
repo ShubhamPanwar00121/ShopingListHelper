@@ -1,7 +1,7 @@
 #include "MedicalStore.h"
 
 MedicalStore::MedicalStore(std::string shopName, std::string address, int shopRating, int staffRating, Commodity com1, Commodity com2, Commodity com3)
-	:Shop("Dairy", shopName, address, shopRating), staffRating{ staffRating }
+	:Shop("MedicalStore", shopName, address, shopRating), staffRating{ staffRating }
 {
 	this->com2 = com1;
 	this->com1 = com2;

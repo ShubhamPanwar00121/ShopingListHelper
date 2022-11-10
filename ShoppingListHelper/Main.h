@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <iostream>
 #include <iomanip>
+#include <vector>
 #include "Dairy.h"
 #include "GroceryStore.h"
 #include "MedicalStore.h"
+#include "PurchasedCommodity.h"
 
 using namespace std;
 
@@ -22,4 +24,6 @@ void ShowAvaialbleCommoditiesInSelectedShop(Dairy);
 void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore);
 void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore);
 void DisplayCommoditiesDetail(Commodity);
+void SwitchToSelectedShop();
+void Purchaser(Commodity, Shop);
 string category{ "" };

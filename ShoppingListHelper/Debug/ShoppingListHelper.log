@@ -1,5 +1,8 @@
-﻿  Main.cpp
-C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(160,22): warning C4154: deletion of an array expression; conversion to pointer supplied
-C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(233,28): warning C4154: deletion of an array expression; conversion to pointer supplied
-C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(294,27): warning C4154: deletion of an array expression; conversion to pointer supplied
+﻿  GroceryStore.cpp
+  Main.cpp
+C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(144,22): warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(217,28): warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(278,27): warning C4154: deletion of an array expression; conversion to pointer supplied
+  MedicalStore.cpp
+  Generating Code...
   ShoppingListHelper.vcxproj -> C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Debug\ShoppingListHelper.exe

@@ -1,7 +1,7 @@
 #include "GroceryStore.h"
 
 GroceryStore::GroceryStore(std::string shopName, std::string address, int shopRating, int numberOfOutlets, Commodity com1, Commodity com2, Commodity com3)
-	:Shop("Dairy", shopName, address, shopRating), outletsCount{ numberOfOutlets }
+	:Shop("GroceryStore", shopName, address, shopRating), outletsCount{ numberOfOutlets }
 {
 	this->com1 = com1;
 	this->com2 = com2;

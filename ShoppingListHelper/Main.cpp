@@ -3,8 +3,8 @@
 Dairy selectedDairy{};
 GroceryStore selectedGroceryStore{};
 MedicalStore selectedMedicalStore{};
-
 int shopSelectionCode{ 0 };
+vector<pair<Shop, PurchasedCommodity>> purchasedItems;
 
 int main()
 {
@@ -16,23 +16,7 @@ int main()
 	ToLowerCase(category);
 	SwitchToRequiredCategory(category);
 	system("cls");
-
-	if (shopSelectionCode == 1)
-	{
-		ShowAvaialbleCommoditiesInSelectedShop(selectedDairy);
-	}
-	else if (shopSelectionCode == 2)
-	{
-		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore);
-	}
-	else if (shopSelectionCode == 3)
-	{
-		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore);
-	}
-	else
-	{
-		cout << "error in getting shopSelectedCode\n";
-	}
+	SwitchToSelectedShop();
 }
 
 void ToLowerCase(string& str)
@@ -118,7 +102,7 @@ Dairy DairySelected()
 		<< setw(20) << "Number Of Cows Owned"
 		<<endl;
 	
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < (sizeof(Ptr_Dairies) / sizeof(Ptr_Dairies[0])); i++)
 	{
 		PrintShopsDetails(srNo, (*Ptr_Dairies[i]).Shop::GetShopName(), (*Ptr_Dairies[i]).Shop::GetShopAddress(), (*Ptr_Dairies[i]).Shop::GetShopRating(), (*Ptr_Dairies[i]).GetNumberOfCowsOwned());
 		srNo++;
@@ -191,7 +175,7 @@ GroceryStore GroceryStoreSelected()
 		<< setw(20) << "Number Of Outlets"
 		<< endl;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < (sizeof(Ptr_GroceryStores) / sizeof(Ptr_GroceryStores[0])); i++)
 	{
 		PrintShopsDetails(srNo, (*Ptr_GroceryStores[i]).Shop::GetShopName(), (*Ptr_GroceryStores[i]).Shop::GetShopAddress(), (*Ptr_GroceryStores[i]).Shop::GetShopRating(), (*Ptr_GroceryStores[i]).GetNumberOfOutlets());
 		srNo++;
@@ -259,7 +243,7 @@ MedicalStore MedicalStoreSelected()
 		<< setw(20) << "Staff Rating"
 		<< endl;
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < (sizeof(Ptr_MedicalStore)/sizeof(Ptr_MedicalStore[0])); i++)
 	{
 		PrintShopsDetails(srNo, (*Ptr_MedicalStore[i]).Shop::GetShopName(), (*Ptr_MedicalStore[i]).Shop::GetShopAddress(), (*Ptr_MedicalStore[i]).Shop::GetShopRating(), (*Ptr_MedicalStore[i]).getStaffRating());
 		srNo++;
@@ -323,33 +307,183 @@ int GetSelectShopNumber()
 
 void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
 {
+	string commoditySelected{ "" };
+	
 		cout << "welcome to " << DairyShop.GetShopName() <<"\n\nHere we have following Commodities Avaialble:----\n"<< endl;
 		cout << setw(20) << "NAME" << setw(25) << "AVAILABLE QUANTITY" << setw(10) << "COST" << endl;
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM1));
-		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM3));
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM2));
+		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM3));
+		cout << "\nplease enter the name of commodity that you want to buy" << endl;
+		getline(cin, commoditySelected);
+		ToLowerCase(commoditySelected);
+		system("cls");
+
+		string com1Name = DairyShop.BuyFromDairy(Dairy::COM1).GetCommodityName();
+		ToLowerCase(com1Name);
+		string com2Name = DairyShop.BuyFromDairy(Dairy::COM2).GetCommodityName();
+		ToLowerCase(com2Name);
+		string com3Name = DairyShop.BuyFromDairy(Dairy::COM3).GetCommodityName();
+		ToLowerCase(com3Name);
+
+		if (commoditySelected ==  com1Name)
+		{
+			Purchaser(DairyShop.BuyFromDairy(Dairy::COM1), DairyShop);
+		}
+		else if (commoditySelected == com2Name)
+		{
+			Purchaser(DairyShop.BuyFromDairy(Dairy::COM2), DairyShop);
+		}
+		else if (commoditySelected == com3Name)
+		{
+			Purchaser(DairyShop.BuyFromDairy(Dairy::COM3), DairyShop);
+		}
+		else
+		{
+			cout << "Please enter complete name and try again" << endl;
+			ShowAvaialbleCommoditiesInSelectedShop(selectedDairy);
+		}
 }
 
 void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore)
 {
+	string commoditySelected{ "" };
+	
 	cout << "welcome to " << groceryStore.GetShopName() << "\n\nHere we have following Commodities Avaialble:----\n" << endl;
 	cout << setw(20) << "NAME" << setw(25) << "AVAILABLE QUANTITY" << setw(10) << "COST" << endl;
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM1));
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM3));
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM2));
+	cout << "\nplease enter the name of commodity that you want to buy" << endl;
+	getline(cin, commoditySelected);
+	ToLowerCase(commoditySelected);
+	system("cls");
+
+	string com1Name = groceryStore.BuyFromGroceryStore(GroceryStore::COM1).GetCommodityName();
+	ToLowerCase(com1Name);
+	string com2Name = groceryStore.BuyFromGroceryStore(GroceryStore::COM2).GetCommodityName();
+	ToLowerCase(com2Name);
+	string com3Name = groceryStore.BuyFromGroceryStore(GroceryStore::COM3).GetCommodityName();
+	ToLowerCase(com3Name);
+
+	if (commoditySelected == com1Name)
+	{
+		Purchaser(groceryStore.BuyFromGroceryStore(GroceryStore::COM1), groceryStore);
+	}
+	else if (commoditySelected == com2Name)
+	{
+		Purchaser(groceryStore.BuyFromGroceryStore(GroceryStore::COM2), groceryStore);
+	}
+	else if (commoditySelected == com3Name)
+	{
+		Purchaser(groceryStore.BuyFromGroceryStore(GroceryStore::COM3), groceryStore);
+	}
+	else
+	{
+		cout << "Please enter complete name and try again" << endl;
+		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore);
+	}
 }
 
 void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore)
 {
+	string commoditySelected{ "" };
+
 	cout << "welcome to " << medicalStore.GetShopName() << "\n\nHere we have following Commodities Avaialble:----\n" << endl;
 	cout << setw(20) << "NAME" << setw(25) << "AVAILABLE QUANTITY" << setw(10) << "COST" << endl;
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM1));
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM3));
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM2));
+	cout << "\nplease enter the name of commodity that you want to buy" << endl;
+	getline(cin, commoditySelected);
+	ToLowerCase(commoditySelected);
+	system("cls");
+
+	string com1Name = medicalStore.BuyFromMedicalStore(MedicalStore::COM1).GetCommodityName();
+	ToLowerCase(com1Name);
+	string com2Name = medicalStore.BuyFromMedicalStore(MedicalStore::COM2).GetCommodityName();
+	ToLowerCase(com2Name);
+	string com3Name = medicalStore.BuyFromMedicalStore(MedicalStore::COM3).GetCommodityName();
+	ToLowerCase(com3Name);
+
+	if (commoditySelected == com1Name)
+	{
+		Purchaser(medicalStore.BuyFromMedicalStore(MedicalStore::COM1), medicalStore);
+	}
+	else if (commoditySelected == com2Name)
+	{
+		Purchaser(medicalStore.BuyFromMedicalStore(MedicalStore::COM2), medicalStore);
+	}
+	else if (commoditySelected == com3Name)
+	{
+		Purchaser(medicalStore.BuyFromMedicalStore(MedicalStore::COM3), medicalStore);
+	}
+	else
+	{
+		cout << "Please enter complete name and try again" << endl;
+		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore);
+	}
+
 }
 
 void DisplayCommoditiesDetail(Commodity c)
 {
 	cout << left;
 	cout << setw(20) << c.GetCommodityName() << setw(25) << c.GetAvaialbleQuantity() << setw(10) << c.GetCommodityCost() << endl;
+}
+
+void SwitchToSelectedShop()
+{
+	if (shopSelectionCode == 1)
+	{
+		ShowAvaialbleCommoditiesInSelectedShop(selectedDairy);
+	}
+	else if (shopSelectionCode == 2)
+	{
+		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore);
+	}
+	else if (shopSelectionCode == 3)
+	{
+		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore);
+	}
+	else
+	{
+		cout << "error in getting shopSelectedCode\n";
+	}
+}
+
+void Purchaser(Commodity com, Shop selectedShop)
+{
+	float quantityBought;
+
+	cout << "You have Selected " << com.GetCommodityName() <<" which have total "<< com.GetAvaialbleQuantity() << " units availabe." << endl;
+	cout << "\nPlease enter the amount in numbers that you want to buy" << endl;
+	cin >> quantityBought;
+
+	if (quantityBought <= com.GetAvaialbleQuantity())
+	{
+		PurchasedCommodity purchasedCom(com.GetCommodityName(), com.GetAvaialbleQuantity(), com.GetCommodityCost(), quantityBought);
+		purchasedItems.push_back(make_pair(selectedShop, purchasedCom));
+		system("cls");
+		cout << "added to purchased item list" << endl;
+	}
+	else
+	{
+		system("cls");
+		cout << "please enter quantity less than avaialble quantity" << endl;
+		cout << "Not added to Purchased items list" << endl;
+	}
+
+	if (selectedShop.GetShopType() == "Dairy")
+	{
+		ShowAvaialbleCommoditiesInSelectedShop(selectedDairy);
+	}
+	else if (selectedShop.GetShopType() == "GroceryStore")
+	{
+		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore);
+	}
+	else if (selectedShop.GetShopType() == "MedicalStore")
+	{
+		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore);
+	}
 }
