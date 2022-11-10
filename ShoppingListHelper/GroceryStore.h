@@ -7,7 +7,8 @@ public:
 	GroceryStore(std::string, std::string, int, int, Commodity, Commodity, Commodity);
 	GroceryStore();
 	~GroceryStore();
-	Commodity BuyFromGroceryStore(int);
+	Commodity BuyFromGroceryStore(int,float=0.0f);
+	Commodity BuyFromGroceryStore(std::string, float=0.0f);
 	int GetNumberOfOutlets();
 	enum CommodityTypeEnum
 	{

@@ -10,6 +10,7 @@ public:
 	std::string GetCommodityName();
 	float GetAvaialbleQuantity();
 	float GetCommodityCost();
+	void SetAvailableQuantity(float);
 private:
 	std::string name{ "" };
 	float availableQuantity{ 0 };

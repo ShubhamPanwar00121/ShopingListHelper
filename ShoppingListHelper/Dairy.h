@@ -8,7 +8,8 @@ public:
 	Dairy(std::string, std::string, int, int,Commodity,Commodity,Commodity);
 	Dairy();
 	~Dairy();
-	Commodity BuyFromDairy(int);
+	Commodity BuyFromDairy(int, float=0.0f);
+	Commodity BuyFromDairy(std::string, float=0.0f);
 	int GetNumberOfCowsOwned();
 	enum CommodityTypeEnum
 	{

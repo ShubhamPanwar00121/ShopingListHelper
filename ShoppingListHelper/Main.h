@@ -26,4 +26,5 @@ void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore);
 void DisplayCommoditiesDetail(Commodity);
 void SwitchToSelectedShop();
 void Purchaser(Commodity, Shop);
-string category{ "" };
+void MakeTextFileAndExit();
+void StartFunc();

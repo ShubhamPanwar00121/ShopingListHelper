@@ -21,23 +21,26 @@ int GroceryStore::GetNumberOfOutlets()
 	return this->outletsCount;
 }
 
-Commodity GroceryStore::BuyFromGroceryStore(int CommodityType)
+Commodity GroceryStore::BuyFromGroceryStore(int CommodityType, float purchasedAmmount)
 {
 	switch (CommodityType)
 	{
 	case COM1:
 	{
 		return com1;
+		com1.SetAvailableQuantity(purchasedAmmount);
 		break;
 	}
 	case COM2:
 	{
 		return com2;
+		com2.SetAvailableQuantity(purchasedAmmount);
 		break;
 	}
 	case COM3:
 	{
 		return com3;
+		com3.SetAvailableQuantity(purchasedAmmount);
 		break;
 	}
 
@@ -45,5 +48,28 @@ Commodity GroceryStore::BuyFromGroceryStore(int CommodityType)
 		Commodity defaultCommodity = Commodity("null", 0.0f, 0.0f);
 		return defaultCommodity;
 		break;
+	}
+}
+
+Commodity GroceryStore::BuyFromGroceryStore(std::string name, float purchasedAmmount)
+{
+	if (name == com1.GetCommodityName())
+	{
+		com1.SetAvailableQuantity(com1.GetAvaialbleQuantity()-purchasedAmmount);
+		return BuyFromGroceryStore(0, purchasedAmmount);
+	}
+	else if (name == com2.GetCommodityName())
+	{
+		com2.SetAvailableQuantity(com2.GetAvaialbleQuantity()-purchasedAmmount);
+		return BuyFromGroceryStore(1, purchasedAmmount);
+	}
+	else if (name == com3.GetCommodityName())
+	{
+		com3.SetAvailableQuantity(com3.GetAvaialbleQuantity()-purchasedAmmount);
+		return BuyFromGroceryStore(2, purchasedAmmount);
+	}
+	else
+	{
+		return BuyFromGroceryStore(3, purchasedAmmount);
 	}
 }

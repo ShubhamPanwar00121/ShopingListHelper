@@ -4,15 +4,24 @@ Dairy selectedDairy{};
 GroceryStore selectedGroceryStore{};
 MedicalStore selectedMedicalStore{};
 int shopSelectionCode{ 0 };
-vector<pair<Shop, PurchasedCommodity>> purchasedItems;
+string category{ "" };
+vector<pair<Shop, PurchasedCommodity>> purchasedItems{};
 
 int main()
 {
 	cout << "Welcome to the shopping helper"<< endl;
 	Sleep(1500);
-	cout << "What are you Shopping today?\nDairy | Groceries | Medicines" << endl;
+	StartFunc();
+}
+
+void StartFunc()
+{
+	cout << "What are you Shopping today? or enter exit to exit\nDairy | Groceries | Medicines" << endl;
 	cout << "-----------------------------------------------------------\n";
+	cout << "category is " << category << endl;
 	cin >> category;
+	cout << "-----------------------------------------------------------\n";
+	cout << "category is " << category << endl;
 	ToLowerCase(category);
 	SwitchToRequiredCategory(category);
 	system("cls");
@@ -49,8 +58,12 @@ void SwitchToRequiredCategory(string str)
 	}
 	else if (str == "exit")
 	{
+
 		system("cls");
+		cout << "Checking for purchased items and making a text file" << endl;
+		MakeTextFileAndExit();
 		cout << "Exiting....";
+
 	}
 	else
 	{
@@ -65,10 +78,6 @@ void RetryOrExit()
 	cin >> category;
 	ToLowerCase(category);
 	SwitchToRequiredCategory(category);
-
-	Sleep(1000);
-	cout << "What are you Shopping today?\nDairy | Groceries | Medicines" << endl;
-	cout << "-----------------------------------------------------------\n";
 }
 
 Dairy DairySelected()
@@ -314,7 +323,8 @@ void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM1));
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM2));
 		DisplayCommoditiesDetail(DairyShop.BuyFromDairy(Dairy::COM3));
-		cout << "\nplease enter the name of commodity that you want to buy" << endl;
+		cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
+		cin.ignore();
 		getline(cin, commoditySelected);
 		ToLowerCase(commoditySelected);
 		system("cls");
@@ -338,6 +348,11 @@ void ShowAvaialbleCommoditiesInSelectedShop(Dairy DairyShop)
 		{
 			Purchaser(DairyShop.BuyFromDairy(Dairy::COM3), DairyShop);
 		}
+		else if (commoditySelected == "exit")
+		{
+			category = "";
+			StartFunc();
+		}
 		else
 		{
 			cout << "Please enter complete name and try again" << endl;
@@ -354,7 +369,8 @@ void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore)
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM1));
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM3));
 	DisplayCommoditiesDetail(groceryStore.BuyFromGroceryStore(GroceryStore::COM2));
-	cout << "\nplease enter the name of commodity that you want to buy" << endl;
+	cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
+	cin.ignore();
 	getline(cin, commoditySelected);
 	ToLowerCase(commoditySelected);
 	system("cls");
@@ -378,6 +394,11 @@ void ShowAvaialbleCommoditiesInSelectedShop(GroceryStore groceryStore)
 	{
 		Purchaser(groceryStore.BuyFromGroceryStore(GroceryStore::COM3), groceryStore);
 	}
+	else if (commoditySelected == "exit")
+	{
+		category = "";
+		StartFunc();
+	}
 	else
 	{
 		cout << "Please enter complete name and try again" << endl;
@@ -394,7 +415,8 @@ void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore)
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM1));
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM3));
 	DisplayCommoditiesDetail(medicalStore.BuyFromMedicalStore(MedicalStore::COM2));
-	cout << "\nplease enter the name of commodity that you want to buy" << endl;
+	cout << "\nplease enter the name of commodity that you want to buy or enter exit to exit" << endl;
+	cin.ignore();
 	getline(cin, commoditySelected);
 	ToLowerCase(commoditySelected);
 	system("cls");
@@ -417,6 +439,11 @@ void ShowAvaialbleCommoditiesInSelectedShop(MedicalStore medicalStore)
 	else if (commoditySelected == com3Name)
 	{
 		Purchaser(medicalStore.BuyFromMedicalStore(MedicalStore::COM3), medicalStore);
+	}
+	else if (commoditySelected == "exit")
+	{
+		category = "";
+		StartFunc();
 	}
 	else
 	{
@@ -455,6 +482,7 @@ void SwitchToSelectedShop()
 void Purchaser(Commodity com, Shop selectedShop)
 {
 	float quantityBought;
+	bool purchaseMade{ false };
 
 	cout << "You have Selected " << com.GetCommodityName() <<" which have total "<< com.GetAvaialbleQuantity() << " units availabe." << endl;
 	cout << "\nPlease enter the amount in numbers that you want to buy" << endl;
@@ -466,6 +494,7 @@ void Purchaser(Commodity com, Shop selectedShop)
 		purchasedItems.push_back(make_pair(selectedShop, purchasedCom));
 		system("cls");
 		cout << "added to purchased item list" << endl;
+		purchaseMade = true;
 	}
 	else
 	{
@@ -476,14 +505,29 @@ void Purchaser(Commodity com, Shop selectedShop)
 
 	if (selectedShop.GetShopType() == "Dairy")
 	{
+		if(purchaseMade) selectedDairy.BuyFromDairy(com.GetCommodityName(), quantityBought);
 		ShowAvaialbleCommoditiesInSelectedShop(selectedDairy);
 	}
 	else if (selectedShop.GetShopType() == "GroceryStore")
 	{
+		if(purchaseMade) selectedGroceryStore.BuyFromGroceryStore(com.GetCommodityName(), quantityBought);
 		ShowAvaialbleCommoditiesInSelectedShop(selectedGroceryStore);
 	}
 	else if (selectedShop.GetShopType() == "MedicalStore")
 	{
+		if(purchaseMade) selectedMedicalStore.BuyFromMedicalStore(com.GetCommodityName(),quantityBought);
 		ShowAvaialbleCommoditiesInSelectedShop(selectedMedicalStore);
+	}
+}
+
+void MakeTextFileAndExit()
+{
+	if (purchasedItems.size() == 0)
+	{
+		cout << "you have not bought anything" << endl;
+	}
+	else
+	{
+		cout << "purchased items found" << endl;
 	}
 }

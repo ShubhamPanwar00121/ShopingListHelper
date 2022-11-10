@@ -29,3 +29,8 @@ float Commodity::GetCommodityCost()
 {
 	return this->cost;
 }
+
+void Commodity::SetAvailableQuantity(float val)
+{
+	this->availableQuantity = val;
+}

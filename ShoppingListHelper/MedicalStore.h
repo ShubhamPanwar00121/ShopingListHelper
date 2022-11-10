@@ -7,7 +7,8 @@ public:
 	MedicalStore(std::string, std::string, int, int, Commodity, Commodity, Commodity);
 	MedicalStore();
 	~MedicalStore();
-	Commodity BuyFromMedicalStore(int);
+	Commodity BuyFromMedicalStore(int, float=0.0f);
+	Commodity BuyFromMedicalStore(std::string, float=0.0f);
 	int getStaffRating();
 	enum CommodityTypeEnum
 	{
