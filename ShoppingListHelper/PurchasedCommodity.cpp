@@ -18,3 +18,8 @@ float PurchasedCommodity::GetPurchasedAmmount()
 {
 	return PurchasedAmount;
 }
+
+void PurchasedCommodity::SetPurchasedAmount(float additionPurchased)
+{
+	PurchasedAmount += additionPurchased;
+}

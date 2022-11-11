@@ -2,4 +2,7 @@
 C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(153,22): warning C4154: deletion of an array expression; conversion to pointer supplied
 C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(226,28): warning C4154: deletion of an array expression; conversion to pointer supplied
 C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(287,27): warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(545,19): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(568,18): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Main.cpp(572,24): warning C4018: '<': signed/unsigned mismatch
   ShoppingListHelper.vcxproj -> C:\Users\ACER\Desktop\c++Project_15\ShopingListHelper\ShoppingListHelper\Debug\ShoppingListHelper.exe

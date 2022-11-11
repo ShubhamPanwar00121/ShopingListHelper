@@ -164,7 +164,7 @@ GroceryStore GroceryStoreSelected()
 	Commodity _soap("Soap", 50.0f, 0.5f);
 	GroceryStore* Ptr_GreenBasket = new GroceryStore("Green Basket", "Deep Well, Riften", 4, 1, _Rice, _cola, _soap);
 
-	Commodity _biscuits("Busicuits", 100.0f, 0.5f);
+	Commodity _biscuits("Biscuit", 100.0f, 0.5f);
 	Commodity _toffee("Toffee", 500.0f, 0.1f);
 	Commodity _chips("Chips", 55.0f, 0.5f);
 	GroceryStore* Ptr_RisingSun = new GroceryStore("Rising Sun", "Long Tower, Falkreth", 3, 2, _biscuits, _toffee, _chips);
@@ -532,5 +532,53 @@ void MakeTextFileAndExit()
 	else
 	{
 		cout << "purchased items found\nmaking list----------------" << endl;
+
+		AddDoublicateComodities();
+
+		float billAmount{0};
+		ofstream myFile;
+		myFile.open("ShoppingList.txt");
+		myFile << "Shopping List-----------\n\n\n";
+		myFile << left;
+		myFile << setw(20) << "Shop Name" << setw(15) << "Product" << setw(20) << "Quantity Purchased" << setw(10) << "cost\n\n";
+
+		for (int i=0; i < purchasedItems.size(); i++)
+		{
+			myFile << left;
+			myFile << setw(20) << purchasedItems[i].first.GetShopName() << setw(15) << purchasedItems[i].second.Commodity::GetCommodityName() << setw(20) << purchasedItems[i].second.GetPurchasedAmmount() << setw(10) << purchasedItems[i].second.Commodity::GetCommodityCost() << endl;
+			billAmount += (purchasedItems[i].second.GetPurchasedAmmount() * purchasedItems[i].second.GetCommodityCost());
+		}
+		myFile << "\n\n";
+		myFile << left;
+		myFile << setw(55) << "--------------------------------------" << setw(10) << billAmount << endl;
+		myFile.close();
 	}
+}
+
+void AddDoublicateComodities()
+{
+	vector<pair<Shop, PurchasedCommodity>> purchasedItemsNew{};
+	Shop s("","", "",0);
+	PurchasedCommodity p("",0.0f,0.0f,0.0f);
+	pair<Shop, PurchasedCommodity>  nullPair;
+
+	nullPair.first = s;
+	nullPair.second = p;
+
+	for (int i=0; i < purchasedItems.size(); i++)
+	{
+		if (purchasedItems[i].first.GetShopName() != nullPair.first.GetShopName())
+		{
+			for (int j = i+1; j < purchasedItems.size(); j++)
+			{
+				if (purchasedItems[i].first.GetShopName() == purchasedItems[j].first.GetShopName() && purchasedItems[i].second.GetCommodityName() == purchasedItems[j].second.GetCommodityName())
+				{
+					purchasedItems[i].second.SetPurchasedAmount(purchasedItems[j].second.GetPurchasedAmmount());
+					purchasedItems[j] = nullPair;
+				}
+			}
+			purchasedItemsNew.push_back(purchasedItems[i]);
+		}
+	}
+	purchasedItems = purchasedItemsNew;
 }

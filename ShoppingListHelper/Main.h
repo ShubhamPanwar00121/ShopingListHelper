@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <fstream>
 #include "Dairy.h"
 #include "GroceryStore.h"
 #include "MedicalStore.h"
@@ -28,3 +29,4 @@ void SwitchToSelectedShop();
 void Purchaser(Commodity, Shop);
 void MakeTextFileAndExit();
 void StartFunc();
+void AddDoublicateComodities();
