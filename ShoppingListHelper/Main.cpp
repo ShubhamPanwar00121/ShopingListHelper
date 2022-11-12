@@ -565,6 +565,7 @@ void AddDoublicateComodities()
 	nullPair.first = s;
 	nullPair.second = p;
 
+	//--------combining doubles------------------
 	for (int i=0; i < purchasedItems.size(); i++)
 	{
 		if (purchasedItems[i].first.GetShopName() != nullPair.first.GetShopName())
@@ -580,5 +581,22 @@ void AddDoublicateComodities()
 			purchasedItemsNew.push_back(purchasedItems[i]);
 		}
 	}
+
+	//-------sorting same shops together---------
+
+	for (int i = 0; i < purchasedItemsNew.size() - 1; i++)
+	{
+		if (purchasedItemsNew[i].first.GetShopName() != purchasedItemsNew[i + 1].first.GetShopName())
+		{
+			for (int j = i; j < purchasedItemsNew.size(); j++)
+			{
+				if (purchasedItemsNew[j].first.GetShopName() == purchasedItemsNew[i].first.GetShopName())
+				{
+					swap(purchasedItemsNew[i + 1], purchasedItemsNew[j]);
+				}
+			}
+		}
+	}
+
 	purchasedItems = purchasedItemsNew;
 }
