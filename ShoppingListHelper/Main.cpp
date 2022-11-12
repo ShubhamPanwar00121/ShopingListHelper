@@ -41,7 +41,7 @@ void SwitchToRequiredCategory(string str)
 	if (str == "dairy")
 	{
 		system("cls");
-		if(selectedDairy.GetShopName()=="") selectedDairy = DairySelected();
+		selectedDairy = DairySelected();
 		shopSelectionCode = 1;
 	}
 	else if (str == "groceries")
