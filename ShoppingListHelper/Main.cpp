@@ -538,20 +538,25 @@ void MakeTextFileAndExit()
 		float billAmount{0};
 		ofstream myFile;
 		myFile.open("ShoppingList.txt");
-		myFile << "Shopping List-----------\n\n\n";
-		myFile << left;
-		myFile << setw(20) << "Shop Name" << setw(15) << "Product" << setw(20) << "Quantity Purchased" << setw(10) << "cost\n\n";
-
+		myFile << "Shopping List-----------\n";
+		myFile << "\n";
+		myFile << "\n";
+		myFile << setw(20) << "Shop Name" << setw(15) << "Product" << setw(20) << "Quantity Purchased" << setw(10) << "cost\n";
+		
+		myFile << "\n";
 		for (int i=0; i < purchasedItems.size(); i++)
 		{
-			myFile << left;
 			myFile << setw(20) << purchasedItems[i].first.GetShopName() << setw(15) << purchasedItems[i].second.Commodity::GetCommodityName() << setw(20) << purchasedItems[i].second.GetPurchasedAmmount() << setw(10) << purchasedItems[i].second.Commodity::GetCommodityCost() << endl;
 			billAmount += (purchasedItems[i].second.GetPurchasedAmmount() * purchasedItems[i].second.GetCommodityCost());
 		}
-		myFile << "\n\n";
-		myFile << left;
+		myFile << "\n";
+
 		myFile << setw(55) << "--------------------------------------" << setw(10) << billAmount << endl;
 		myFile.close();
+		
+		cout << "text file of your shopping items has been created in the same location where this exe file is located\nplease click enter to exit";
+		string temp{ "" };
+		cin >> temp;
 	}
 }
 
