@@ -1,3 +1,3 @@
 If exe is not working on your computer than please try to download it again while window defender is off, it can curropt the file.
-If you have downloaded whole project and it is showing error in including header files then please right click on solution in visual studio and go to properties then go to vc++ directories and add the include path for the project there
+If you have downloaded whole project and it is showing error in including header files then please right click on solution in visual studio and go to properties then go to vc++ directories and add the include path of the header file folder present in project.
 Or alternatively just put all header and cpp and visual studio files out in ShoppingListHelper folder.
