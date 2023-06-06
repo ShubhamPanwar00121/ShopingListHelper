@@ -1,0 +1,12 @@
+﻿  Commodity.cpp
+  Dairy.cpp
+  GroceryStore.cpp
+  Main.cpp
+C:\Users\Sp354\OneDrive\Desktop\ShopingListHelper\ShoppingListHelper\Visual studio generated files\Main.cpp(153,22): warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\Users\Sp354\OneDrive\Desktop\ShopingListHelper\ShoppingListHelper\Visual studio generated files\Main.cpp(226,28): warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\Users\Sp354\OneDrive\Desktop\ShopingListHelper\ShoppingListHelper\Visual studio generated files\Main.cpp(287,27): warning C4154: deletion of an array expression; conversion to pointer supplied
+  MedicalStore.cpp
+  PurchasedCommodity.cpp
+  Shop.cpp
+  Generating Code...
+  ShoppingListHelper.vcxproj -> C:\Users\Sp354\OneDrive\Desktop\ShopingListHelper\ShoppingListHelper\Visual studio generated files\x64\Debug\ShoppingListHelper.exe
