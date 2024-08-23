@@ -605,4 +605,3 @@ void AddDoublicateComodities()
 
 	purchasedItems = purchasedItemsNew;
 }
-//comment added
